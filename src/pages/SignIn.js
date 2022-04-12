@@ -38,9 +38,20 @@ function SignIn() {
 
       if (userCredential.user) {
         navigate("/");
+        toast.success("Log in Successfully", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } catch (error) {
-      toast.error("Bad User Credentials");
+      toast.error("Incorrect email or password!", {
+        autoClose: 2000,
+      });
     }
   };
 
@@ -50,7 +61,7 @@ function SignIn() {
         <header>
           <p className="pageHeader">Welcome Back!</p>
         </header>
-        <form action="" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             className="emailInput"

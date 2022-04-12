@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import {
   getAuth,
@@ -55,8 +56,11 @@ function SignUp() {
       await setDoc(doc(db, "users", user.uid), formDataCopy);
 
       navigate("/sign-in"); // = res.redirect
+      toast.success("Sign Up successfully. Please log in!", {
+        autoClose: 2000,
+      });
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong with registration. Please try again!");
     }
   };
 
